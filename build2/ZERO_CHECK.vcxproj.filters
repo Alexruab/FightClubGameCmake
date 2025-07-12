@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="H:\FightClub\build2\CMakeFiles\e43035bb3ea658beb5f1378c8099acd2\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{9D6E8AA0-79AD-38E0-A4EA-BE192B31E551}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
