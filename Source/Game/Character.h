@@ -1,6 +1,6 @@
 // Character.h
 #pragma once
-#ifdef WIN32 || _WINDOWS
+#if defined(WIN32) || defined(_WINDOWS)
     #ifdef _EXPORTING
         #define GAME_API    __declspec(dllexport)
     #elif _IMPORTING

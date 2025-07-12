@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#ifdef WIN32 || _WINDOWS
+#if defined(WIN32) || defined(_WINDOWS)
     #ifdef _EXPORTING
         #define MATH_API    __declspec(dllexport)
     #elif _IMPORTING
