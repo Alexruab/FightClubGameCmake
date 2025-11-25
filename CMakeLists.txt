@@ -6,6 +6,8 @@ set(PROJECT_NAME FightClubGame)
 
 project(${PROJECT_NAME} VERSION 1.0.0)
 
+include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
+
 # common options
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -34,6 +36,11 @@ set(DLL_GAME_INCLUDES Source/Game/Weapon.h Source/Game/Character.h)
 source_group("Source files/Game" FILES "Source/Game/Weapon.cpp", "Source/Game/Character.cpp")
 source_group("Header files/Game" FILES "Source/Game/Weapon.h", "Source/Game/Character.h")
 
+#find packages
+find_package(nlohmann_json CONFIG REQUIRED)
+find_package(GTest REQUIRED)
+find_package(cpr)
+
 # tergets
 add_executable(${PROJECT_NAME} ${SOURCES} ${INCLUDES})
 
@@ -41,6 +48,9 @@ add_library(MathLib STATIC ${MATH_SOURCES} ${MATH_INCLUDES})
 add_library(${PROJECT_NAME}Lib SHARED ${DLL_GAME_SOURCES} ${DLL_GAME_INCLUDES})
 
 add_executable(${PROJECT_NAME}TestRunner Source/Tests/main.cpp)
+
+# Chuck Norris Jokes
+add_executable(ChuckNorrisJokes Source/ChuckNorrisJokes/main.cpp)
 
 target_compile_definitions(${PROJECT_NAME}Lib PRIVATE _EXPORTING)
 target_compile_definitions(${PROJECT_NAME} PUBLIC _IMPORTING)
@@ -50,11 +60,16 @@ if(SKIP_GAME_OPT)
     target_compile_definitions(${PROJECT_NAME} PUBLIC SKIP_GAME)
 endif()
 
+# link libraries
+
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}Lib)
 target_link_libraries(${PROJECT_NAME}Lib PRIVATE MathLib)
 target_link_libraries(${PROJECT_NAME}TestRunner PRIVATE ${PROJECT_NAME}Lib)
+target_link_libraries(${PROJECT_NAME}TestRunner PRIVATE gtest::gtest)
 target_link_libraries(${PROJECT_NAME}TestRunner PRIVATE MathLib)
 
+target_link_libraries(ChuckNorrisJokes nlohmann_json::nlohmann_json)
+target_link_libraries(ChuckNorrisJokes cpr::cpr)
 
 # includes
 #target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Source)
