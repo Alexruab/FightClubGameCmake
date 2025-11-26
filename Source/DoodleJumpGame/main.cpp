@@ -1,5 +1,5 @@
 #include "DoodleJump.h"
-
+/*
 #if defined(_WIN32)           
 	#define NOGDI             // All GDI defines and routines
 	#define NOUSER            // All USER defines and routines
@@ -14,7 +14,7 @@
 	#undef near
 	#undef far
 #endif
-
+*/
 #include <iostream>
 
 int main(void)

@@ -12,13 +12,17 @@ set(SOURCE_FILES
     PlatformManager.h
 )
 add_library(${PROJECT_NAME}Lib ${SOURCE_FILES})
+add_executable(${PROJECT_NAME}TestRunner Tests/main.cpp)
 
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}Lib)
 target_link_libraries(${PROJECT_NAME}Lib raylib MathLib)
+target_link_libraries(${PROJECT_NAME}TestRunner ${PROJECT_NAME}Lib gtest::gtest)
+
+target_include_directories(${PROJECT_NAME}TestRunner PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES FOLDER ${PROJECT_NAME})
 set_target_properties(${PROJECT_NAME}Lib PROPERTIES FOLDER ${PROJECT_NAME})
+set_target_properties(${PROJECT_NAME}TestRunner PROPERTIES FOLDER ${PROJECT_NAME})
 
-target_sources(${PROJECT_NAME}Lib PRIVATE pch.cpp pch.h)
-# вместо set_source_files_properties(... "/Ycpch.h")
-target_precompile_headers(${PROJECT_NAME}Lib PRIVATE pch.h)
+include(${CMAKE_SOURCE_DIR}/Automation/CMAKE/CMakeHelpers.cmake)
+setup_precompiled_headers(${PROJECT_NAME}Lib pch.cpp pch.h "${SOURCE_FILES}")

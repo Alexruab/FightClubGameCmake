@@ -7,6 +7,7 @@
 namespace
 {
     constexpr ScreenSize c_screenSize{950, 1300};
+    //constexpr Player::Config c_config{40.0f, 40.0f, 300.0f, 100.5f, -700.0f};
 
     bool isPlatformGropund(const Rectangle& player, const Rectangle& priviousPlayer, const Rectangle& platform, float yTreshold = 10.0f)
     {
@@ -35,6 +36,7 @@ namespace
     }
 }
 
+
 DoodleJump::DoodleJump() 
 {
     reset();
@@ -54,7 +56,7 @@ void DoodleJump::run()
 {
     const char* windowsTitle = "Doodle Jump";
     InitWindow(c_screenSize.width, c_screenSize.height, windowsTitle);
-    SetTargetFPS(10);
+    SetTargetFPS(120);
 
     
 

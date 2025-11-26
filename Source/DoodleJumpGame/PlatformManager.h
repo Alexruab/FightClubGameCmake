@@ -9,6 +9,14 @@ public:
     PlatformManager(const ScreenSize& screenSize);
     void applyScroll(float offset);
 
+    struct Config
+    {
+        const int platformCount{10};
+        const float platformWidth{100.0f};
+        const float platformHeight{10.0f};
+    };
+    
+
     const std::vector<Rectangle>& platforms() const;
 
 private:
