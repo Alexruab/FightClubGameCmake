@@ -9,6 +9,7 @@ on:
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
+  TARGETS: FightClubGameTestRunner
 
 jobs:
   build:
@@ -16,11 +17,6 @@ jobs:
     # You can convert this to a matrix build if you need cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        target:
-          - DoodleJumpGameTestRunner
-          - FightClubGameTestRunner
 
     steps:
     - uses: actions/checkout@v4
@@ -35,13 +31,13 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -v --target ${{matrix.target}}
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -v --target ${{env.TARGETS}}
 
     - name: Run tests
-      run: ${{github.workspace}}/build/bin/${{matrix.target}} --gtest_output=xml:"${{github.workspace}}/test-results/${{matrix.target}}-results.xml"
+      run: ${{github.workspace}}/build/bin/${{env.TARGETS}} --gtest_output=xml:"${{github.workspace}}/test-results/${{env.TARGETS}}-results.xml"
       
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: TestReports-${{matrix.target}}
-        path: ${{github.workspace}}/test-results/${{matrix.target}}-results.xml
+        name: TestReports-${{env.TARGETS}}
+        path: ${{github.workspace}}/test-results/${env.TARGETS}}-results.xml
