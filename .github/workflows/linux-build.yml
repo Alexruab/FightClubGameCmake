@@ -33,9 +33,6 @@ jobs:
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -v --target ${{env.TARGETS}}
 
-    - name: Tests
-      run: ${{github.workspace}}/build/
-
     - name: Archive Artifacts
       run: zip -r artifacts-${{env.BUILD_TYPE}}.zip build/bin
       
