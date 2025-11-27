@@ -40,7 +40,7 @@ set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /FA")
 
 #find package
-find_package(nlohmann_json REQUIRED)
+#find_package(nlohmann_json REQUIRED)
 find_package(GTest REQUIRED)
 find_package(raylib)
 

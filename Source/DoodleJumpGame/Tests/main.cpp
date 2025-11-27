@@ -43,5 +43,4 @@ TEST(PlatformManagerTest, PlatformPositionShouldBeSetCorrectly)
         EXPECT_NEAR(platforms[i].x, expectedX, 0.001f);
         EXPECT_NEAR(platforms[i].y, expectedY, 0.001f);
     }
-
 }
