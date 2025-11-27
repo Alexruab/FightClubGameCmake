@@ -31,9 +31,9 @@ class Config:
 
 ###############################################################
 
-FRESH_ARG = "--fresh" if Config.FRESH else ""
-CLEAN_ARG = "--clean-first" if Config.CLEAN else ""
-VERBOSE_ARG = "--verbose" if Config.VERBOSE else ""
+#FRESH_ARG = "--fresh" if Config.FRESH else ""
+#CLEAN_ARG = "--clean-first" if Config.CLEAN else ""
+#VERBOSE_ARG = "--verbose" if Config.VERBOSE else ""
 
 def remove_build_folder():
     if os.path.exists(Config.BUILD_FOLDER):

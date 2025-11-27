@@ -5,6 +5,7 @@
     },
     "include": [
         "build/CMakePresets.json",
-        "build/conan/CMakePresets.json"
+        "build/conan/CMakePresets.json",
+        "out/build/Clang 20.1.2 x86_64-pc-linux-gnu/conan/CMakePresets.json"
     ]
 }

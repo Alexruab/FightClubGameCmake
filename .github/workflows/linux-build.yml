@@ -9,7 +9,7 @@ on:
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
-  TARGET: FightClubGame
+  TARGETS: FightClubGame DoodleJumpGame
 
 jobs:
   build:
@@ -31,13 +31,16 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -v --target ${{env.TARGET}}
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -v --target ${{env.TARGETS}}
+
+    - name: Tests
+      run: ${{github.workspace}}/build/
 
     - name: Archive Artifacts
-      run: zip -r ${{env.TARGET}}-${{env.BUILD_TYPE}}.zip build/bin
+      run: zip -r artifacts-${{env.BUILD_TYPE}}.zip build/bin
       
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: ${{env.TARGET}}-${{env.BUILD_TYPE}}
-        path: ${{env.TARGET}}-${{env.BUILD_TYPE}}.zip
+        name: artifacts-${{env.BUILD_TYPE}}
+        path: artifacts--${{env.BUILD_TYPE}}.zip
